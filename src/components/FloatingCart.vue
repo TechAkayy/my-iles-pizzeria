@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { useCart } from '@/composables/cart'
-  const { cart } = useCart()
+  const cartStore = useCart()
+  const { cart } = storeToRefs(cartStore)
 
   // const props = defineProps({
   // 	name: {

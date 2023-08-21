@@ -1,7 +1,12 @@
 <script setup lang="ts">
-  import { pizzas } from '~~/db.json'
+  import { usePizzaStore } from '@/store/pizza'
 
-  const cart = ref([])
+  // import { pizzas } from '~~/db.json'
+
+  const pizzaStore = usePizzaStore()
+  const { pizzas } = pizzaStore
+
+  const { cart } = useCart()
 
   const cartStatusMsg = computed(() => {
     return cart.value.length

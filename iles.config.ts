@@ -54,6 +54,8 @@ export default defineConfig({
   vite: {
     resolve: {
       alias: {
+        '@': fileURLToPath(new URL('./src', import.meta.url)),
+        '~': fileURLToPath(new URL('./src', import.meta.url)),
         '~~': fileURLToPath(new URL('./', import.meta.url)),
       },
     },
@@ -83,10 +85,7 @@ export default defineConfig({
           // '@vueuse/core',
           'pinia',
         ],
-        dirs: [
-          // 'src/composables',
-          // 'src/stores',
-        ],
+        dirs: ['src/composables', 'src/utils', 'src/stores'],
         vueTemplate: true,
         dts: 'auto-imports.d.ts',
       }),

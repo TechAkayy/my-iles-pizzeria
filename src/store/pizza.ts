@@ -1,20 +1,25 @@
+// import { pizzas as pizzasLocal } from '~~/db.json'
+import { $fetch } from 'ofetch'
+
 export const usePizzaStore = defineStore('pizza', () => {
-  const pizzas = []
+  // const pizzas = pizzasLocal
+  const pizzas = ref([])
 
-  // 1. State (ref, reactive, etc) / getters (computed)
-  const count = ref(0)
-  const getCount = computed(() => count.value)
+  const fetchPizzas = async () => {
+    try {
+      const data = await $fetch(
+        'https://my-json-server.typicode.com/TechAkayy/my-iles-pizzeria/pizzas',
+      )
+      pizzas.value.push(...data)
+    } catch (err) {
+      console.log(err)
+    }
+  }
 
-  // 2. Actions (functions)
-  const increment = () => (count.value += 1)
-  const decrement = () => (count.value -= 1)
+  fetchPizzas()
 
   return {
     pizzas,
-    count,
-    getCount,
-    increment,
-    decrement,
   }
 })
 
