@@ -1,10 +1,8 @@
-// import { pizzas as pizzasLocal } from '~~/db.json'
 import { $fetch } from 'ofetch'
 
-export const usePizzaStore = defineStore('pizza', () => {
-  // const pizzas = pizzasLocal
-  const pizzas = ref([])
+const pizzas = ref([])
 
+export const usePizza = () => {
   const fetchPizzas = async () => {
     try {
       const data = await $fetch(
@@ -16,13 +14,7 @@ export const usePizzaStore = defineStore('pizza', () => {
     }
   }
 
-  fetchPizzas()
-
   return {
-    pizzas,
+    fetchPizzas,
   }
-})
-
-if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(usePizzaStore as any, import.meta.hot))
 }

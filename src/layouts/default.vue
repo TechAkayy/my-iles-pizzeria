@@ -7,7 +7,7 @@
     <div
       class="flex flex-col bg-white dark:bg-neutral-950 text-neutral-900 dark:text-neutral-50"
     >
-      <FloatingCart />
+      <FloatingCart client:load />
       <NavBar
         :class="[
           currentRoute.path === '/' ? 'absolute bg-transparent z-10' : '',

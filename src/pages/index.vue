@@ -8,7 +8,9 @@
     <div data-pg-name="divider" class="container mx-auto p-4 w-1/2">
       <hr class="border-gray-200" />
     </div>
-    <PizzaStore client:load />
+    <!-- https://github.com/ElMassimo/iles/issues/172 -->
+    <PizzaStoreAsync client:load />
+
     <DeliverySection client:visible />
     <SubscribeSection client:visible />
   </main>

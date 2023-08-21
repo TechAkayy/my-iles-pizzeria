@@ -1,11 +1,13 @@
 <script setup lang="ts">
-  import { usePizzaStore } from '@/store/pizza'
+  import { $fetch } from 'ofetch'
 
   // import { pizzas } from '~~/db.json'
 
-  const pizzaStore = usePizzaStore()
-  const { pizzas } = pizzaStore
-
+  // const { pizzas, fetchPizzas } = usePizza()
+  // await fetchPizzas()
+  const pizzas = await $fetch(
+    'https://my-json-server.typicode.com/TechAkayy/my-iles-pizzeria/pizzas',
+  )
   const { cart } = useCart()
 
   const cartStatusMsg = computed(() => {
@@ -32,12 +34,14 @@
           </div>
         </div>
         <div class="-mx-3 flex flex-wrap justify-center mb-12">
-          <PizzaCard
-            v-for="(pizza, index) in pizzas"
-            :key="index"
-            v-bind="pizza"
-            @add-to-cart="addToCart(pizza)"
-          />
+          <Suspense>
+            <PizzaCard
+              v-for="(pizza, index) in pizzas"
+              :key="index"
+              v-bind="pizza"
+              @add-to-cart="addToCart(pizza)"
+            />
+          </Suspense>
         </div>
         <div>
           <BaseButton to="#" size="lg">Full Menu</BaseButton>
